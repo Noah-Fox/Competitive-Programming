@@ -4,4 +4,7 @@ all:
 	@echo "\t make <program>"
 
 %: %.cc
-	$(COMPILE) $< -o $@
+	$(COMPILE) $< -o $@+
+
+clean:
+	rm *+

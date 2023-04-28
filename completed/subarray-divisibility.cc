@@ -1,5 +1,7 @@
 //https://cses.fi/problemset/task/1662
 
+//decent algorithm, but too slow
+
 // #include <iostream>
 // #include <vector>
 // #include <unordered_set>
@@ -59,7 +61,7 @@ ll recurse(const vector<ll>& values, int startAt, int rangeLength, int divNum){
 }
 
 int main(){
-
+    ios::sync_with_stdio(0);
     int amount;
     cin >> amount;
 

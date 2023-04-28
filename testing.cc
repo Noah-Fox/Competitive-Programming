@@ -5,7 +5,7 @@ using namespace std;
 int main(){
 
     
-    cout << "test\n";
+    cout << "testing\n";
 
     return 0;
 }

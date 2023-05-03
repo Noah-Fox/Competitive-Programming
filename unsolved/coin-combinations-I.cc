@@ -1,5 +1,7 @@
 //https://cses.fi/problemset/task/1635
 
+//functions, but is too slow
+
 #include <iostream>
 #include <vector>
 #include <map>
@@ -16,7 +18,6 @@ int recurse(const vector<int>& coins, int sum, map<int,int>& memo){
     }
 
     if (memo.count(sum)){
-        cout << "memo " << sum << "\n";;
         return memo[sum];
     }
 

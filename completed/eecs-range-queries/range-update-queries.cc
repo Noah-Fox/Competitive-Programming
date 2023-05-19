@@ -1,8 +1,8 @@
 //https://cses.fi/problemset/task/1651
 
-#include <iostream>
-#include <vector>
-// #include <bits/stdc++.h>
+// #include <iostream>
+// #include <vector>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -42,12 +42,12 @@ int main(){
         if (queryType == 1){
             cin >> a >> b >> u;
             a += numAmount-1;
-            b += numAmount-1;
+            b += numAmount;
             while (a >= 1){
                 nums[a] += u;
                 a /= 2;
             }
-            while (b >= 1){
+            while (b >= 1 && b < 2*numAmount){
                 nums[b] -= u;
                 b /= 2;
             }

@@ -1,5 +1,13 @@
 //https://cses.fi/problemset/task/1680
 
+/**
+ * longest path in a directed acyclic graph
+ *
+ * Construct a topological sorting of the graph. 
+ *
+ * For every node u, in order of the sorting: For every edge (u,v): if distance[u]+1 > distance[v]: distance[v] = distance[u]+1
+*/
+
 // #include <iostream>
 // #include <vector>
 // #include <queue>

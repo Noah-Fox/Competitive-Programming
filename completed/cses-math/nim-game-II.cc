@@ -1,5 +1,9 @@
 //https://cses.fi/problemset/task/1098
 
+/**
+ * A game is in a losing state iff the xor sum of the number of sticks in each heap is divisible by 4
+*/
+
 // #include <iostream>
 #include <bits/stdc++.h>
 

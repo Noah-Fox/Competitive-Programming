@@ -28,15 +28,22 @@ int main(){
         ll hyphenCount = 0;
         queue<ll> hyphenPositions;
         for (ll x = 0; x < code.length(); x ++){
+
+            //INVALID: too many digits
             if (onDigit >= 10){
                 valid = false;
                 continue;
             }
+
             if (code[x] == '-'){
+
+                //INVALID: hyphen at beginning, end, or repeating
                 if (x == 0 || x == code.length()-1 || wasHyphen){
                     valid = false;
                     // break;
                 }
+
+                //INVALID: third hyphen not before last digit
                 if (hyphenCount == 2 && onDigit != 9){
                     valid = false;
                 }
@@ -45,6 +52,8 @@ int main(){
                 hyphenPositions.push(onDigit);
             }
             else if (code[x] == 'X'){
+
+                //INVALID: X is not the last digit
                 if (x != code.length()-1 || onDigit != 9){
                     valid = false;
                     // break;
@@ -60,6 +69,10 @@ int main(){
             }
         }
 
+        if (onDigit != 10){
+            valid = false;
+        }
+
         if (!valid){
             cout << "invalid\n";
             continue;
@@ -71,7 +84,7 @@ int main(){
             sum += (10-x) * digits[x];
         }
 
-
+        //INVALID: checksum is not correct
         if (sum % 11 != 0){
             cout << "invalid\n";
             continue;
@@ -89,7 +102,7 @@ int main(){
             }
             outputDigits[x] = digits[x];
         }
-        outputDigits[9] = 10 - (sum % 10);
+        outputDigits[9] = (10 - (sum % 10)) % 10;
 
         cout << "978-";
         for (ll x = 0; x < 10; x ++){
@@ -104,4 +117,3 @@ int main(){
 
     return 0;
 }
-

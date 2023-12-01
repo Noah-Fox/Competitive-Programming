@@ -1,10 +1,10 @@
 if [ $# -eq 0 ]
 then
-    echo "Please give the command to run and title of pacnw_div2_20_21_solutions/ directory as arguments"
+    echo "Please give the command to run and title of ecna-23-24/ directory as arguments"
     exit
 fi 
 
-TO_INPUT="../icpc-problems/pacnw_div2_20_21_solutions/${2}/data/secret"
+TO_INPUT="../icpc-problems/ecna-23-24/${2}/data/secret"
 
 TIMEFORMAT=%R
 

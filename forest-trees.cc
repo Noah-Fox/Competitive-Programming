@@ -10,6 +10,16 @@ using namespace std;
 
 typedef long long ll;
 
+// Hash function  
+struct hashFunction 
+{ 
+  size_t operator()(const pair<ll ,  
+                    ll> &x) const
+  { 
+    return x.first ^ x.second; 
+  } 
+}; 
+
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
@@ -22,29 +32,6 @@ int main(){
     for (ll i = 0; i < treeAmount; i ++){
         cin >> trees[i].first >> trees[i].second;
     }
-
-    // ll leftAt = 0;
-    // ll rightAt = 0;
-    // ll topAt = 0;
-    // ll bottomAt = 0;
-    // for (ll i = 0; i < treeAmount; i ++){
-    //     if (trees[i].first < trees[leftAt].first){
-    //         leftAt = i;
-    //     }
-    //     if (trees[i].first > trees[rightAt].first){
-    //         rightAt = i;
-    //     }
-    //     if (trees[i].second < trees[bottomAt].first){
-    //         bottomAt = i;
-    //     }
-    //     if (trees[i].second > trees[topAt].first){
-    //         topAt = i;
-    //     }
-    // }
-    // cout << "left: " << trees[leftAt].first << " " << trees[leftAt].second << "\n";
-    // cout << "right: " << trees[rightAt].first << " " << trees[rightAt].second << "\n";
-    // cout << "top: " << trees[topAt].first << " " << trees[topAt].second << "\n";
-    // cout << "bottom: " << trees[bottomAt].first << " " << trees[bottomAt].second << "\n";
 
 
     //input sensed trees
@@ -64,14 +51,8 @@ int main(){
             sensedTrees[i] = {sensedTrees[i].second,-sensedTrees[i].first};
         }
 
-        //find boundaries of range relative to first sTree
-        // ll leftRange = -senseRadius - sensedTrees[0].first;
-        // ll rightRange = senseRadius - sensedTrees[0].first;
-        // ll topRange = senseRadius - sensedTrees[0].second;
-        // ll bottomRange = -senseRadius - sensedTrees[0].second;
-
         //fill a set with every sensed tree relative to first tree
-        set<pair<ll,ll>> sTreeSet;
+        unordered_set<pair<ll,ll>, hashFunction> sTreeSet;
         for (ll i = 0; i < sensedAmount; i ++){
             sTreeSet.insert({sensedTrees[i].first-sensedTrees[0].first,sensedTrees[i].second-sensedTrees[0].second});
         }
@@ -79,7 +60,7 @@ int main(){
         //iterate through every tree
         for (ll i = 0; i < treeAmount; i ++){
             bool validTree = true;
-            set<pair<ll,ll>> onTreeSet = sTreeSet;
+            unordered_set<pair<ll,ll>, hashFunction> onTreeSet = sTreeSet;
 
             //position that robot would be in if current tree is the right one
             pair<ll,ll> testRobotPos = make_pair(trees[i].first-sensedTrees[0].first, trees[i].second-sensedTrees[i].second);
@@ -92,7 +73,6 @@ int main(){
                 pair<ll,ll> dist = make_pair(distX,distY);
 
                 //check if tree is out of range
-                // if (distX >= leftRange && distX <= rightRange && distY <= topRange && distY >= bottomRange){
                 if (abs(trees[x].first-testRobotPos.first) + abs(trees[x].second-testRobotPos.second) <= senseRadius){
                     //check if tree is in the set of sensed trees
                     auto found = onTreeSet.find(dist);
